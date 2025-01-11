@@ -6,8 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		1116C1242D3272030023B5E7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1116C1232D3271F90023B5E7 /* Utils.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		1116C0B32D32343B0023B5E7 /* FirebaseAuthenticationSwiftUIPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirebaseAuthenticationSwiftUIPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1116C1232D3271F90023B5E7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -34,6 +39,7 @@
 			children = (
 				1116C0B52D32343B0023B5E7 /* FirebaseAuthenticationSwiftUIPractice */,
 				1116C0B42D32343B0023B5E7 /* Products */,
+				1116C1232D3271F90023B5E7 /* Utils.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -119,6 +125,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1116C1242D3272030023B5E7 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
