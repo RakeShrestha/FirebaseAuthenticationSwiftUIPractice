@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SignupView: View {
     
+    @Environment(\.dismiss) var dismiss
+    
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var confirmPassword: String = ""
@@ -86,6 +88,7 @@ struct SignupView: View {
             
             Button {
                 // Handle Sign In navigation here
+                dismiss()
             } label: {
                 Text("Sign In")
                     .font(.footnote)

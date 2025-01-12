@@ -17,6 +17,10 @@ struct LoginView: View {
     
     @State private var isPasswordVisible: Bool = false
     
+    @State private var isSignUpScreenPresented: Bool = false
+    
+    @State private var loginViewOpacity: Double = 1.0
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .center, spacing: 20) {
@@ -39,9 +43,23 @@ struct LoginView: View {
                 
             }
             .padding(.horizontal)
+            .opacity(isSignUpScreenPresented ? 0 : loginViewOpacity)
+            .animation(.easeOut(duration: 0.5), value: loginViewOpacity)
         }
         .background(Color.black)
         .ignoresSafeArea()
+        .fullScreenCover(isPresented: $isSignUpScreenPresented) {
+            SignupView()
+        }
+        .onChange(of: isSignUpScreenPresented) {
+            if !isSignUpScreenPresented {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+                    withAnimation(.easeOut) {
+                        loginViewOpacity = 1
+                    }
+                }
+            }
+        }
     }
     
     private var signInImage: some View {
@@ -108,7 +126,12 @@ struct LoginView: View {
                 .foregroundStyle(.white)
             
             Button {
-                // Handle Sign Up navigation here
+                withAnimation {
+                    loginViewOpacity = 0
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+                    isSignUpScreenPresented = true
+                }
             } label: {
                 Text("Sign up")
                     .font(.footnote)

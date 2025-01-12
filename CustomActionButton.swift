@@ -17,7 +17,7 @@ struct ActionButton: View {
             HStack {
                 Text(label)
                     .foregroundStyle(Color.white)
-                    .padding()
+                    .padding(.vertical)
                 
                 Image(icon)
                     .resizable()
