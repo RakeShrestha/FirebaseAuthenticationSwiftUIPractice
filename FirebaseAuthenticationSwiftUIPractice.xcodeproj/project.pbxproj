@@ -8,11 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		1116C1242D3272030023B5E7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1116C1232D3271F90023B5E7 /* Utils.swift */; };
+		116E56A62D33E47D0037409B /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116E569E2D33E47D0037409B /* CustomTextField.swift */; };
+		116E56AF2D33E6940037409B /* CustomActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116E56AE2D33E68D0037409B /* CustomActionButton.swift */; };
+		116E56B12D33E6C30037409B /* CustomErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116E56B02D33E6AF0037409B /* CustomErrorMessage.swift */; };
+		116E56B62D33E9B50037409B /* CustomSocialSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116E56B42D33E9930037409B /* CustomSocialSignInButton.swift */; };
+		116E56B82D33F3650037409B /* CustomLoginSignUpImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116E56B72D33F3530037409B /* CustomLoginSignUpImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1116C0B32D32343B0023B5E7 /* FirebaseAuthenticationSwiftUIPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirebaseAuthenticationSwiftUIPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1116C1232D3271F90023B5E7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		116E569E2D33E47D0037409B /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		116E56AE2D33E68D0037409B /* CustomActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionButton.swift; sourceTree = "<group>"; };
+		116E56B02D33E6AF0037409B /* CustomErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrorMessage.swift; sourceTree = "<group>"; };
+		116E56B42D33E9930037409B /* CustomSocialSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSocialSignInButton.swift; sourceTree = "<group>"; };
+		116E56B72D33F3530037409B /* CustomLoginSignUpImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLoginSignUpImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -40,6 +50,11 @@
 				1116C0B52D32343B0023B5E7 /* FirebaseAuthenticationSwiftUIPractice */,
 				1116C0B42D32343B0023B5E7 /* Products */,
 				1116C1232D3271F90023B5E7 /* Utils.swift */,
+				116E569E2D33E47D0037409B /* CustomTextField.swift */,
+				116E56AE2D33E68D0037409B /* CustomActionButton.swift */,
+				116E56B72D33F3530037409B /* CustomLoginSignUpImage.swift */,
+				116E56B02D33E6AF0037409B /* CustomErrorMessage.swift */,
+				116E56B42D33E9930037409B /* CustomSocialSignInButton.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,7 +140,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				116E56AF2D33E6940037409B /* CustomActionButton.swift in Sources */,
 				1116C1242D3272030023B5E7 /* Utils.swift in Sources */,
+				116E56A62D33E47D0037409B /* CustomTextField.swift in Sources */,
+				116E56B12D33E6C30037409B /* CustomErrorMessage.swift in Sources */,
+				116E56B82D33F3650037409B /* CustomLoginSignUpImage.swift in Sources */,
+				116E56B62D33E9B50037409B /* CustomSocialSignInButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
