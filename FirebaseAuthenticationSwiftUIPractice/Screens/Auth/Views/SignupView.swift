@@ -24,6 +24,8 @@ struct SignupView: View {
     
     @State private var didPasswordMatch: Bool = true
     
+    @EnvironmentObject var authViewModel: AuthViewModel
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .center, spacing: 20) {
@@ -75,6 +77,9 @@ struct SignupView: View {
                 }
             } else {
                 // Handle sign-up action
+                Task {
+                    await authViewModel.createUserAccount(email: email, password: password)
+                }
             }
         }
     }

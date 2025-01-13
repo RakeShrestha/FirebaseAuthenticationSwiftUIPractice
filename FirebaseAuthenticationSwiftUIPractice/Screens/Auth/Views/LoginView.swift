@@ -21,6 +21,8 @@ struct LoginView: View {
     
     @State private var loginViewOpacity: Double = 1.0
     
+    @EnvironmentObject var authViewModel: AuthViewModel
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .center, spacing: 20) {
@@ -50,6 +52,7 @@ struct LoginView: View {
         .ignoresSafeArea()
         .fullScreenCover(isPresented: $isSignUpScreenPresented) {
             SignupView()
+                .environmentObject(authViewModel)
         }
         .onChange(of: isSignUpScreenPresented) {
             if !isSignUpScreenPresented {
@@ -80,6 +83,9 @@ struct LoginView: View {
         // Sign In Button
         ActionButton(label: "Login", icon: "arrowRight") {
             // Handle login action here
+            Task {
+                await authViewModel.login(email: email, password: password)
+            }
         }
     }
     
