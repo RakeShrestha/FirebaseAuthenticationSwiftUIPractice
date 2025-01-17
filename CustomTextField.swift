@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TextFieldWithIcon: View {
     let title: String
-    let icon: String
+    let icon: String?
     let placeholder: String
     @Binding var text: String
     @FocusState var isFocused: Bool
@@ -23,10 +23,12 @@ struct TextFieldWithIcon: View {
                 .foregroundColor(Color.white)
             
             HStack {
-                Image(icon)
-                    .resizable()
-                    .frame(width: 24, height: 24)
-                    .padding(.trailing, 4)
+                if let icon = icon {
+                    Image(icon)
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                        .padding(.trailing, 4)
+                }
                     TextField("", text: $text, prompt: Text(placeholder).foregroundStyle(.white.opacity(0.5)))
                         .font(.headline)
                         .foregroundColor(Color.white)
@@ -67,6 +69,7 @@ struct PasswordFieldWithIcon: View {
                 .font(.caption)
                 .fontWeight(.bold)
                 .foregroundColor(Color.white)
+                .padding(.top, 8)
             
             HStack {
                 Image("password")

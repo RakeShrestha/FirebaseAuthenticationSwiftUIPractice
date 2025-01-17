@@ -11,10 +11,14 @@ struct SignupView: View {
     
     @Environment(\.dismiss) var dismiss
     
+    @State private var firstName: String = ""
+    @State private var lastName: String = ""
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var confirmPassword: String = ""
     
+    @FocusState private var isFirstNameFocused: Bool
+    @FocusState private var isLastNameFocused: Bool
     @FocusState private var isEmailFocused: Bool
     @FocusState private var isPasswordFocused: Bool
     @FocusState private var isConfirmPasswordFocused: Bool
@@ -52,6 +56,12 @@ struct SignupView: View {
     
     private var textFields: some View {
         VStack {
+            // User Name
+            HStack(spacing: 24) {
+                TextFieldWithIcon(title: "Your Name", icon: nil, placeholder: "First name", text: $firstName, isFocused: _isFirstNameFocused)
+                TextFieldWithIcon(title: "", icon: nil, placeholder: "Last name", text: $lastName, isFocused: _isLastNameFocused)
+            }
+            
             // Email Field
             TextFieldWithIcon(title: "Email Address", icon: "email", placeholder: "Enter your email", text: $email, isFocused: _isEmailFocused)
             
