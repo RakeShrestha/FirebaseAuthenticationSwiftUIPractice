@@ -116,3 +116,86 @@ struct PasswordFieldWithIcon: View {
         }
     }
 }
+
+struct OTPTextField: View {
+    let numberOfPinFields: Int
+    @State private var enterValue: [String]
+    @FocusState private var fieldFocus: Int?
+    @State private var oldValue = ""
+
+    init(numberOfPinFields: Int) {
+        self.numberOfPinFields = numberOfPinFields
+        _enterValue = State(initialValue: Array(repeating: "", count: numberOfPinFields))
+    }
+
+    var body: some View {
+        HStack(spacing: 16) {
+            ForEach(0..<numberOfPinFields, id: \.self) { index in
+                OTPTextFieldCell(
+                    text: $enterValue[index],
+                    index: index,
+                    fieldFocus: $fieldFocus,
+                    oldValue: $oldValue,
+                    numberOfPinFields: numberOfPinFields
+                )
+            }
+        }
+    }
+}
+
+struct OTPTextFieldCell: View {
+    @Binding var text: String
+    let index: Int
+    @FocusState.Binding var fieldFocus: Int? // Use FocusState.Binding
+    @Binding var oldValue: String
+    let numberOfPinFields: Int
+
+    var body: some View {
+        TextField("", text: $text, onEditingChanged: { editing in
+            if editing {
+                oldValue = text
+            }
+        })
+        .frame(width: UIScreen.main.bounds.width / 6, height: UIScreen.main.bounds.width / 6)
+        .background(Color(hex: "393C43").opacity(0.5))
+        .cornerRadius(16)
+        .multilineTextAlignment(.center)
+        .keyboardType(.numberPad)
+        .overlay(
+            RoundedRectangle(cornerRadius: 18)
+                .strokeBorder(
+                    fieldFocus == index ? Color(hex: "F97316").opacity(0.4) : Color.clear,
+                    lineWidth: 5.5
+                )
+                .padding(-5)
+                .animation(.spring(response: 0.5, dampingFraction: 0.6), value: fieldFocus)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(fieldFocus == index ? Color(hex: "F97316") : Color.clear, lineWidth: 2)
+                .animation(.easeInOut(duration: 0.3), value: fieldFocus)
+        )
+        .focused($fieldFocus, equals: index) // Focuses this specific field
+        .onChange(of: text) { newValue in
+            // Ensure only one character is entered
+            if text.count > 1 {
+                if text.first == Character(oldValue) {
+                    text = String(text.suffix(1))
+                } else {
+                    text = String(text.prefix(1))
+                }
+            }
+            
+            // Adjust focus behavior based on new value
+            if !newValue.isEmpty {
+                if fieldFocus == numberOfPinFields - 1 {
+                    fieldFocus = nil
+                } else {
+                    fieldFocus = (fieldFocus ?? 0) + 1
+                }
+            } else {
+                fieldFocus = (fieldFocus ?? 0) - 1
+            }
+        }
+    }
+}
