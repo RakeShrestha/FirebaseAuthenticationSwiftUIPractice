@@ -21,6 +21,8 @@ struct ForgotPasswordView: View {
     @State private var enteredOTP: String = ""
     @State private var didOTPMatched: Bool = true
     
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
         ZStack {
             VStack(alignment: .leading) {
@@ -158,6 +160,7 @@ private extension ForgotPasswordView {
     func handleOTPVerification() {
         if verifyOTP() {
             print("OTP Verified Successfully!")
+            dismiss()
         } else {
             withAnimation {
                 didOTPMatched = false

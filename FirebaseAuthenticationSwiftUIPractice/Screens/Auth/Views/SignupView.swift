@@ -29,8 +29,6 @@ struct SignupView: View {
     @State private var didPasswordMatch: Bool = true
     @State private var navigateToForgotPassword: Bool = false
     
-    @EnvironmentObject var authViewModel: AuthViewModel
-    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -51,8 +49,8 @@ struct SignupView: View {
             .background(Color.black)
             .ignoresSafeArea()
             .navigationDestination(isPresented: $navigateToForgotPassword) {
-                            OTPView() // Destination view for navigation
-                        }
+                OTPView(email: email, password: password)
+            }
         }
     }
     
@@ -94,9 +92,6 @@ struct SignupView: View {
             } else {
                 // Handle sign-up action
                 navigateToForgotPassword = true
-//                Task {
-//                    await authViewModel.createUserAccount(email: email, password: password)
-//                }
             }
         }
     }

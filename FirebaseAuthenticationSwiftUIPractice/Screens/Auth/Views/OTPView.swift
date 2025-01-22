@@ -9,35 +9,50 @@ import SwiftUI
 
 struct OTPView: View {
     let receivedOTP = "1234"
+    let email: String
+    let password: String
     @State private var enteredOTP: String = ""
     @State private var didOTPMatched : Bool = true
     
+    @EnvironmentObject var authViewModel: AuthViewModel
+    
+    init(email: String, password: String) {
+        self.email = email
+        self.password = password
+    }
+    
     var body: some View {
         ZStack {
-            VStack {
-                VStack(alignment: .leading, spacing: 20) {
-                    
-                    BackButton()
-                    
-                    headerView
-                    
-                   otpFieldView
-                    
-                    if !didOTPMatched {
-                        errorMessageView
+            if authViewModel.isLoading {
+                ProgressView("Loading...")
+                    .progressViewStyle(CircularProgressViewStyle())
+            } else {
+                VStack {
+                    VStack(alignment: .leading, spacing: 20) {
+                        
+                        BackButton()
+                        
+                        headerView
+                        
+                        otpFieldView
+                        
+                        if !didOTPMatched {
+                            errorMessageView
+                        }
+                        
+                        Spacer()
+                        
+                        confirmButtonView
                     }
                     
-                    Spacer()
-                    
-                    confirmButtonView
+                    footerView
                 }
-                
-                footerView
+                .padding(.all, 32)
             }
-            .padding(.all, 32)
         }
         .background(.black)
         .navigationBarBackButtonHidden()
+            
     }
     
     func verifyOTP() -> Bool {
@@ -69,7 +84,9 @@ struct OTPView: View {
         Button {
                 if verifyOTP() {
                     // OTP matches
-                    print("OTP Verified Successfully!")
+                    Task {
+                        await authViewModel.createUserAccount(email: email, password: password)
+                    }
                 } else {
                     // OTP does not match
                     withAnimation {
@@ -122,5 +139,5 @@ struct OTPView: View {
 }
 
 #Preview {
-    OTPView()
+    OTPView(email: "testEmail@test.com", password: "Test@1234")
 }

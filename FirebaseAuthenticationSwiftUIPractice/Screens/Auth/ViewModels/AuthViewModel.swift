@@ -15,6 +15,7 @@ final class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     @Published var currentUser: User?
     @Published var isError: Bool = false
+    @Published var isLoading: Bool = false
     
     private let auth = Auth.auth()
     private let firestore = Firestore.firestore()
@@ -26,12 +27,15 @@ final class AuthViewModel: ObservableObject {
     }
     
     func createUserAccount(email: String, password: String) async {
+        isLoading = true
         do {
             let authResult = try await auth.createUser(withEmail: email, password: password) // creating user entry in auth
             await storeUserInFirestore(uid: authResult.user.uid, email: email) // storing extra user details in database
+            await login(email: email, password: password)
         } catch {
             isError = true
         }
+        isLoading = false
     }
     
     func storeUserInFirestore(uid: String, email: String) async {
@@ -46,6 +50,7 @@ final class AuthViewModel: ObservableObject {
     }
     
     func login(email: String, password: String) async {
+        isLoading = true
         do {
             let authResult = try await auth.signIn(withEmail: email, password: password)
             userSession = authResult.user
@@ -53,6 +58,7 @@ final class AuthViewModel: ObservableObject {
         } catch {
             isError = true
         }
+        isLoading = false
     }
     
     func fetchUserData(by uid: String) async {
