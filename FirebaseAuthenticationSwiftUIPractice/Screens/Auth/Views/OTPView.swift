@@ -16,6 +16,9 @@ struct OTPView: View {
         ZStack {
             VStack {
                 VStack(alignment: .leading, spacing: 20) {
+                    
+                    BackButton()
+                    
                     headerView
                     
                    otpFieldView
@@ -34,6 +37,7 @@ struct OTPView: View {
             .padding(.all, 32)
         }
         .background(.black)
+        .navigationBarBackButtonHidden()
     }
     
     func verifyOTP() -> Bool {

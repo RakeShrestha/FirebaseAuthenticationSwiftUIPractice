@@ -27,27 +27,33 @@ struct SignupView: View {
     @State private var isConfirmPasswordVisible: Bool = false
     
     @State private var didPasswordMatch: Bool = true
+    @State private var navigateToForgotPassword: Bool = false
     
     @EnvironmentObject var authViewModel: AuthViewModel
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .center, spacing: 20) {
-                
-                signUpImageView
-                
-                textFields
-                
-                signUpButton
-                
-                signInButtonWithText
-                
-                
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .center, spacing: 20) {
+                    
+                    signUpImageView
+                    
+                    textFields
+                    
+                    signUpButton
+                    
+                    signInButtonWithText
+                    
+                    
+                }
+                .padding(.horizontal)
             }
-            .padding(.horizontal)
+            .background(Color.black)
+            .ignoresSafeArea()
+            .navigationDestination(isPresented: $navigateToForgotPassword) {
+                            OTPView() // Destination view for navigation
+                        }
         }
-        .background(Color.black)
-        .ignoresSafeArea()
     }
     
     private var signUpImageView: some View {
@@ -87,9 +93,10 @@ struct SignupView: View {
                 }
             } else {
                 // Handle sign-up action
-                Task {
-                    await authViewModel.createUserAccount(email: email, password: password)
-                }
+                navigateToForgotPassword = true
+//                Task {
+//                    await authViewModel.createUserAccount(email: email, password: password)
+//                }
             }
         }
     }

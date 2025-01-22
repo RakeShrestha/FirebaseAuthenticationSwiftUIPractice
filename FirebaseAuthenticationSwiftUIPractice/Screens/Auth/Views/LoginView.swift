@@ -24,41 +24,44 @@ struct LoginView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .center, spacing: 20) {
-                
-                signInImage
-                
-                textFieldView
-                
-                signInButton
-                
-                dividerView
-                
-                appleSignInButton
-                
-                googleSignInButton
-                
-                signUpButtonWithText
-                
-                forgotPasswordButton
-                
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .center, spacing: 20) {
+                    
+                    signInImage
+                    
+                    textFieldView
+                    
+                    signInButton
+                    
+                    dividerView
+                    
+                    appleSignInButton
+                    
+                    googleSignInButton
+                    
+                    signUpButtonWithText
+                    
+                    forgotPasswordButton
+                    
+                }
+                .padding(.horizontal)
+                .opacity(isSignUpScreenPresented ? 0 : loginViewOpacity)
+                .animation(.easeOut(duration: 0.5), value: loginViewOpacity)
             }
-            .padding(.horizontal)
-            .opacity(isSignUpScreenPresented ? 0 : loginViewOpacity)
-            .animation(.easeOut(duration: 0.5), value: loginViewOpacity)
-        }
-        .background(Color.black)
-        .ignoresSafeArea()
-        .fullScreenCover(isPresented: $isSignUpScreenPresented) {
-            SignupView()
-                .environmentObject(authViewModel)
-        }
-        .onChange(of: isSignUpScreenPresented) {
-            if !isSignUpScreenPresented {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
-                    withAnimation(.easeOut) {
-                        loginViewOpacity = 1
+            .background(Color.black)
+            .ignoresSafeArea()
+//            .navigationBarBackButtonHidden()
+            .fullScreenCover(isPresented: $isSignUpScreenPresented) {
+                SignupView()
+                    .environmentObject(authViewModel)
+            }
+            .onChange(of: isSignUpScreenPresented) {
+                if !isSignUpScreenPresented {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+                        withAnimation(.easeOut) {
+                            loginViewOpacity = 1
+                        }
                     }
                 }
             }
@@ -149,9 +152,7 @@ struct LoginView: View {
     }
     
     private var forgotPasswordButton: some View {
-        Button {
-            // Handle Forgot Password here
-        } label: {
+        NavigationLink( destination: ForgotPasswordView()) {
             Text("Forgot Password")
                 .font(.footnote)
                 .fontWeight(.heavy)
