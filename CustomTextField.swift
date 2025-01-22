@@ -122,9 +122,12 @@ struct OTPTextField: View {
     @State private var enterValue: [String]
     @FocusState private var fieldFocus: Int?
     @State private var oldValue = ""
+    
+    @Binding var enteredOTP: String
 
-    init(numberOfPinFields: Int) {
+    init(numberOfPinFields: Int, enteredOTP: Binding<String>) {
         self.numberOfPinFields = numberOfPinFields
+        self._enteredOTP = enteredOTP
         _enterValue = State(initialValue: Array(repeating: "", count: numberOfPinFields))
     }
 
@@ -139,6 +142,9 @@ struct OTPTextField: View {
                     numberOfPinFields: numberOfPinFields
                 )
             }
+        }
+        .onChange(of: enterValue) { _ in
+            enteredOTP = enterValue.joined()
         }
     }
 }
