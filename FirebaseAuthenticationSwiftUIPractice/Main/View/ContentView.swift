@@ -17,7 +17,7 @@ struct ContentView: View {
                 LoginView()
             }
             else {
-                AccountSettingsView()
+                HomeScreen()
             }
         }
         .environmentObject(authViewModel)

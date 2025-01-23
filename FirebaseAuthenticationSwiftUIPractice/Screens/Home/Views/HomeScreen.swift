@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HomeScreen: View {
     
+    @EnvironmentObject var authViewModel: AuthViewModel
+    
     let workouts = [
         WorkoutList(thumbnail: "workoutThumbnail0", duration: "25 min", calories: "412kCal", type: "Cardio", description: "Fun workout"),
         WorkoutList(thumbnail: "workoutThumbnail1", duration: "30 min", calories: "350kCal", type: "Strength", description: "Strength training"),
@@ -26,7 +28,7 @@ struct HomeScreen: View {
     ]
     
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
                     VStack {
                         headerSection
                         
@@ -41,6 +43,9 @@ struct HomeScreen: View {
                         
                         sectionHeader(title: "Diet & Nutrition", count: 5)
                         dietScrollView
+                        
+                        logoutButton
+                        
                     }
                 }
                 .background(.black)
@@ -141,7 +146,7 @@ struct HomeScreen: View {
             
             // Workouts ScrollView
             private var workoutsScrollView: some View {
-                ScrollView(.horizontal) {
+                ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 24) {
                         ForEach(workouts) { workout in
                             workoutCard(workout: workout)
@@ -153,7 +158,7 @@ struct HomeScreen: View {
             
             // Diet ScrollView
             private var dietScrollView: some View {
-                ScrollView(.horizontal) {
+                ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 24) {
                         ForEach(dietItems) { item in
                             dietCard(dietItem: item)
@@ -294,6 +299,17 @@ struct HomeScreen: View {
                         .stroke(Color(hex: "393C43"), lineWidth: 2.7)
                 )
             }
+    
+    private var logoutButton: some View {
+        Button(action: {
+            // Handle Apple sign-in
+            authViewModel.signOut()
+        }) {
+        }
+        .padding(.horizontal, 24)
+        .padding(.vertical, 18)
+        .buttonStyle(SignInButtonStyle(image: Image("logout"), title: "Logout"))
+    }
 }
 
 #Preview {

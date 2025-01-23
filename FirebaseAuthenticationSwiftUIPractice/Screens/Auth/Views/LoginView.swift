@@ -23,13 +23,43 @@ struct LoginView: View {
     
     @EnvironmentObject var authViewModel: AuthViewModel
     
+    // State to track keyboard height
+    @State private var keyboardHeight: CGFloat = 0
+
+    // Listen to keyboard notifications
+    private func subscribeToKeyboardNotifications() {
+        NotificationCenter.default.addObserver(
+            forName: UIResponder.keyboardWillShowNotification,
+            object: nil,
+            queue: .main
+        ) { notification in
+            if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+                // Update the keyboard height
+                withAnimation {
+                    self.keyboardHeight = keyboardFrame.height
+                }
+            }
+        }
+        
+        NotificationCenter.default.addObserver(
+            forName: UIResponder.keyboardWillHideNotification,
+            object: nil,
+            queue: .main
+        ) { _ in
+            // Reset keyboard height when it hides
+            withAnimation {
+                self.keyboardHeight = 0
+            }
+        }
+    }
+    
     var body: some View {
         NavigationStack {
             if authViewModel.isLoading {
                 ProgressView("Please wait...")
                     .progressViewStyle(CircularProgressViewStyle())
             } else {
-                ScrollView {
+                ScrollView(showsIndicators: false) {
                     VStack(alignment: .center, spacing: 20) {
                         
                         signInImage
@@ -50,11 +80,23 @@ struct LoginView: View {
                         
                     }
                     .padding(.horizontal)
+                    .padding(.bottom, keyboardHeight) // Adjust the bottom padding for the keyboard
+                    .onAppear {
+                        // Subscribe to keyboard notifications when the view appears
+                        subscribeToKeyboardNotifications()
+                    }
+                    .onDisappear {
+                        // Remove the observers when the view disappears
+                        NotificationCenter.default.removeObserver(self)
+                    }
                     .opacity(isSignUpScreenPresented ? 0 : loginViewOpacity)
                     .animation(.easeOut(duration: 0.5), value: loginViewOpacity)
                 }
                 .background(Color.black)
                 .ignoresSafeArea()
+                .onTapGesture {
+                    hideKeyboard()
+                }
                 .fullScreenCover(isPresented: $isSignUpScreenPresented) {
                     SignupView()
                         .environmentObject(authViewModel)
@@ -71,6 +113,11 @@ struct LoginView: View {
             }
         }
     }
+    
+    private func hideKeyboard() {
+           isEmailFocused = false
+           isPasswordFocused = false
+       }
     
     private var signInImage: some View {
         CustomLoginSignUpImage(title: "Sign In to Fitness App", subtitle: "Let’s personalize your fitness with AI", customImage: "loginImage")
@@ -168,7 +215,7 @@ struct LoginView: View {
                 .foregroundStyle(Color.init(hex: "F97316"))
                 .underline(color: Color.init(hex: "F97316"))
         }
-        .padding(.bottom, 24)
+        .padding(.bottom, 32)
     }
     
 }

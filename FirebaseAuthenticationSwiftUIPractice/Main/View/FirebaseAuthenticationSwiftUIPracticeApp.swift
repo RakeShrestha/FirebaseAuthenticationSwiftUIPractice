@@ -28,6 +28,7 @@ struct FirebaseAuthenticationSwiftUIPracticeApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(authViewModel)
+                .preferredColorScheme(.dark)
         }
     }
 }

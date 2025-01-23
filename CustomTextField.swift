@@ -21,6 +21,7 @@ struct TextFieldWithIcon: View {
                 .font(.caption)
                 .fontWeight(.bold)
                 .foregroundColor(Color.white)
+                .padding(.leading, 8)
             
             HStack {
                 if let icon = icon {
@@ -71,6 +72,7 @@ struct PasswordFieldWithIcon: View {
                 .font(.caption)
                 .fontWeight(.bold)
                 .foregroundColor(Color.white)
+                .padding(.leading, 8)
                 .padding(.top, 8)
             
             HStack {

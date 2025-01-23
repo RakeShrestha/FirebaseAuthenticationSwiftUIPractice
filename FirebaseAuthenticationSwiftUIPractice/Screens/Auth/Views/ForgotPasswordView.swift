@@ -42,11 +42,19 @@ struct ForgotPasswordView: View {
             .padding(.all, 24)
         }
         .background(.black)
+        .onTapGesture {
+            hideKeyboard()
+        }
         .navigationBarBackButtonHidden()
     }
 }
 
 private extension ForgotPasswordView {
+    
+    private func hideKeyboard() {
+           isEmailFocused = false
+           isNewPasswordFocused = false
+       }
     
     // MARK: - Header View
     var headerView: some View {
