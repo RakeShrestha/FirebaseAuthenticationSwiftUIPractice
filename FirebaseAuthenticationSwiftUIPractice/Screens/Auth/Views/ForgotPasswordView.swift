@@ -66,6 +66,10 @@ private extension ForgotPasswordView {
             text: $email,
             isFocused: _isEmailFocused
         )
+        .submitLabel(.next)
+        .onSubmit {
+            isNewPasswordFocused = true
+        }
     }
     
     // MARK: - Password Input Field
@@ -77,6 +81,7 @@ private extension ForgotPasswordView {
             isFocused: _isNewPasswordFocused,
             isPasswordVisible: $isPasswordVisible
         )
+        .submitLabel(.done)
     }
     
     // MARK: - OTP Section

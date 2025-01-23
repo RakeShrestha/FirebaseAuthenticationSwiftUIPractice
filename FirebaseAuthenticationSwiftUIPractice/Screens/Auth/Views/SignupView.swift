@@ -63,17 +63,34 @@ struct SignupView: View {
             // User Name
             HStack(spacing: 24) {
                 TextFieldWithIcon(title: "Your Name", icon: nil, placeholder: "First name", text: $firstName, isFocused: _isFirstNameFocused)
+                    .submitLabel(.next)
+                    .onSubmit {
+                        isLastNameFocused = true
+                    }
                 TextFieldWithIcon(title: "", icon: nil, placeholder: "Last name", text: $lastName, isFocused: _isLastNameFocused)
+                    .submitLabel(.next)
+                    .onSubmit {
+                        isEmailFocused = true
+                    }
             }
             
             // Email Field
             TextFieldWithIcon(title: "Email Address", icon: "email", placeholder: "Enter your email", text: $email, isFocused: _isEmailFocused)
+                .submitLabel(.next)
+                .onSubmit {
+                    isPasswordFocused = true
+                }
             
             // Password Field
             PasswordFieldWithIcon(title: "Password", placeholder: "Password", password: $password, isFocused: _isPasswordFocused, isPasswordVisible: $isPasswordVisible)
+                .submitLabel(.next)
+                .onSubmit {
+                    isConfirmPasswordFocused = true
+                }
             
             // Confirm Password Field
             PasswordFieldWithIcon(title: "Confirm Password", placeholder: "Confirm Password", password: $confirmPassword, isFocused: _isConfirmPasswordFocused, isPasswordVisible: $isConfirmPasswordVisible)
+                .submitLabel(.done)
             
             // Password Match Error
             if !didPasswordMatch {

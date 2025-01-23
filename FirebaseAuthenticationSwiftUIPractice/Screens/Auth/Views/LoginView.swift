@@ -80,9 +80,14 @@ struct LoginView: View {
         VStack {
             // Email Field
             TextFieldWithIcon(title: "Email Address", icon: "email", placeholder: "Enter your email", text: $email, isFocused: _isEmailFocused)
+                .submitLabel(.next)
+                .onSubmit {
+                    isPasswordFocused = true
+                }
             
             // Password Field
             PasswordFieldWithIcon(title: "Password", placeholder: "Password", password: $password, isFocused: _isPasswordFocused, isPasswordVisible: $isPasswordVisible)
+                .submitLabel(.done)
         }
     }
     
