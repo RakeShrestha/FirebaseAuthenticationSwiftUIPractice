@@ -14,7 +14,7 @@ struct ContentView: View {
     var body: some View {
         Group {
             if authViewModel.userSession == nil {
-                LoginView()
+                WorkoutVideoPlayerView()
             }
             else {
                 HomeScreen()

