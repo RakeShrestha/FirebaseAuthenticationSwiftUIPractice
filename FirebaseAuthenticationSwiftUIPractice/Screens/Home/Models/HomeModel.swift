@@ -14,6 +14,7 @@ struct WorkoutList: Identifiable {
     var calories: String
     var type: String
     var description: String
+    var videoURL: String
 }
 
 struct DietList: Identifiable {

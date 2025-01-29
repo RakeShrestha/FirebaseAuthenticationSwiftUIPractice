@@ -12,14 +12,6 @@ struct WorkoutVideoPlayerView: View {
             self.videoURL = videoURL
         }
     
-//    @State private var player: AVPlayer? = {
-//        if let videoUrl = URL(string: videoUrl) {
-//            return AVPlayer(url: videoUrl)
-//        } else {
-//            return nil
-//        }
-//    }()
-    
     // Control States
     @State private var showPlayerControls: Bool = false
     @State private var isPlaying: Bool = true
@@ -36,14 +28,14 @@ struct WorkoutVideoPlayerView: View {
     
     // States for observing player status and managing thumbnail frames
     @State private var isObserverAdded: Bool = false
-    @State private var thumnailFrames: [UIImage] = []
+    @State private var thumbnailFrames: [UIImage] = []
     @State private var draggingImage: UIImage?
     @State private var playerStatusObserver: NSKeyValueObservation?
     
     // MARK: - Body
     var body: some View {
         VStack(alignment: .leading) {
-            let videoPlayerSize: CGSize = .init(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.8)
+            let videoPlayerSize: CGSize = .init(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.75)
             
             BackButton()
                 .padding(.leading, 36)
@@ -61,17 +53,61 @@ struct WorkoutVideoPlayerView: View {
             }
         }
         .background(Color.black)
+        .navigationBarBackButtonHidden()
     }
     
     // MARK: - Setup AVPlayer
-        private func setupPlayer() {
-            if let url = URL(string: videoURL) {
-                player = AVPlayer(url: url)
-                setupPlayerObservers()
-            } else {
-                print("Invalid URL string")
+    private func setupPlayer() {
+        print("Video URL is \(videoURL)")
+        
+        guard let url = URL(string: videoURL) else {
+            print("Invalid URL string")
+            return
+        }
+
+        let asset = AVAsset(url: url)
+        let requiredKeys = ["playable", "duration", "tracks"]
+
+        asset.loadValuesAsynchronously(forKeys: requiredKeys) {
+            DispatchQueue.main.async {
+                for key in requiredKeys {
+                    var error: NSError?
+                    let status = asset.statusOfValue(forKey: key, error: &error)
+                    
+                    if status == .failed {
+                        print("Failed to load \(key): \(error?.localizedDescription ?? "Unknown error")")
+                        return
+                    }
+                }
+                
+                guard asset.isPlayable else {
+                    print("Asset is not playable")
+                    return
+                }
+
+                // Load preferredTransform separately to avoid blocking the main thread
+                asset.loadValuesAsynchronously(forKeys: ["preferredTransform"]) {
+                    DispatchQueue.main.async {
+                        let status = asset.statusOfValue(forKey: "preferredTransform", error: nil)
+                        if status == .loaded {
+                            self.initializePlayer(with: asset)
+                        } else {
+                            print("Failed to load preferredTransform")
+                        }
+                    }
+                }
             }
         }
+    }
+
+
+    // Separate function to initialize player after preferredTransform is loaded
+    private func initializePlayer(with asset: AVAsset) {
+        self.player = AVPlayer(playerItem: AVPlayerItem(asset: asset))
+        self.setupPlayerObservers()
+    }
+
+
     
     // MARK: - Setup Player Observers
     private func setupPlayerObservers() {
@@ -206,35 +242,35 @@ struct WorkoutVideoPlayerView: View {
     }
     
     // MARK: - Generate Thumbnails for Seeking
-    func generateThumbnailFrames() {
-        Task.detached {
-            guard let asset = await player?.currentItem?.asset else { return }
-            let generator = AVAssetImageGenerator(asset: asset)
-            generator.appliesPreferredTrackTransform = true
-            generator.maximumSize = .init(width: 250, height: 250)
-            
+    private func generateThumbnailFrames() {
+        guard let asset = player?.currentItem?.asset else { return }
+
+        let generator = AVAssetImageGenerator(asset: asset)
+        generator.appliesPreferredTrackTransform = true
+        generator.maximumSize = CGSize(width: 250, height: 250)
+
+        Task {
             do {
-                let totalDuration = try await asset.load(.duration).seconds
+                let totalDuration = asset.duration.seconds
                 var frameTimes: [CMTime] = []
                 
-                // Generate frames at intervals
                 for progress in stride(from: 0, to: 1, by: 0.01) {
                     let time = CMTime(seconds: progress * totalDuration, preferredTimescale: 600)
                     frameTimes.append(time)
                 }
                 
-                for await result in generator.images(for: frameTimes) {
+                for try await result in generator.images(for: frameTimes) {
                     let cgImage = try result.image
                     await MainActor.run {
-                        thumnailFrames.append(UIImage(cgImage: cgImage))
+                        self.thumbnailFrames.append(UIImage(cgImage: cgImage))
                     }
                 }
-                
             } catch {
-                print("Error generating thumbnail frames: \(error.localizedDescription)")
+                print("Error generating thumbnails: \(error.localizedDescription)")
             }
         }
     }
+
     
     // MARK: - VideoPlayerContainer
     @ViewBuilder
@@ -336,8 +372,9 @@ struct WorkoutVideoPlayerView: View {
             
             Rectangle()
                 .fill(Color.init(hex: "F97316"))
-                .frame(width: max(UIScreen.main.bounds.width * progress, 0))
+                .frame(width: max(0, UIScreen.main.bounds.width * (progress.isFinite ? progress : 0)))
                 .frame(height: 4)
+
             
             Rectangle()
                 .fill(.black.opacity(0.0001))
@@ -399,8 +436,8 @@ struct WorkoutVideoPlayerView: View {
     // MARK: - Update Thumbnail Image for Dragging
     private func updateThumbnailImageForDrag() {
         let dragIndex = Int(progress / 0.01)
-        if thumnailFrames.indices.contains(dragIndex) {
-            draggingImage = thumnailFrames[dragIndex]
+        if thumbnailFrames.indices.contains(dragIndex) {
+            draggingImage = thumbnailFrames[dragIndex]
         }
     }
     

